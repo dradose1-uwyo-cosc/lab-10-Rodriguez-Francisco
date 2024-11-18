@@ -1,9 +1,9 @@
-# Your Name Here
+# Francisco Rodriguez
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
-# Sources, people worked with, help given to: 
+# 11/18/2024
+# Lab 10
+# Lab Section: MON 3:10PM
+# Sources, people worked with, help given to: https://www.geeksforgeeks.org/hashlib-module-in-python/
 # your
 # comments
 # here
@@ -43,3 +43,33 @@ def get_hash(to_hash):
 # Hash each individual password and compare it against the stored hash.
 # - When you find the match, print the plaintext version of the password.
 # - End your loop.
+def pass_cracker():
+    try: 
+        with open("hash","r") as file:
+            pass_hatch= file.read().strip()
+    except:
+        pass_hatch = "@"
+        print("couldnt open hash")
+    if pass_hatch !="@":
+        try:
+            path = Path('rockyou.txt')
+            contents = path.read_text()
+
+            passwords = contents.splitlines()
+        except:
+            print("ERROR")
+        else:
+            for password in passwords:
+                password = password.strip()
+                hash_password = get_hash(password)
+                if hash_password == pass_hatch:
+                    print(f"password is {password}")
+                    break
+            else:
+                print("password not found")
+    
+pass_cracker()
+            
+
+    
+        
